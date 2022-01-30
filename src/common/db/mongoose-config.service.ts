@@ -15,7 +15,7 @@ export class MongooseConfigService implements MongooseOptionsFactory {
     return {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      uri: "mongodb://localhost:27017/elecromate"
+      uri: "mongodb+srv://mubashir:123@cluster0.crunx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
     };
   }
 }
