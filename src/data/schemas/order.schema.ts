@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import * as mongoose from 'mongoose';
-import { User } from './user.schema';
 import { Product } from './product.schema';
+import { Person } from "./person.schema";
 
 export enum OrderStatus {
   Shipped,
@@ -21,7 +21,7 @@ export type OrderDocument = Order & Document;
 
 @Schema({ timestamps: true })
 export class Order {
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: User.name })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Person.name })
   userId: string;
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Product.name })
   productId: string;

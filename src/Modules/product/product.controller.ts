@@ -20,7 +20,6 @@ import {
   ApiResponse,
   ApiTags
 } from "@nestjs/swagger";
-import { JwtAuthGuard } from "../../data/utilities/auth/jwt-auth.guard";
 import { CreateProductDto, CreatePurchaseDto } from "../../data/dtos/dto";
 
 @ApiTags('Products')
@@ -29,8 +28,7 @@ export class ProductController {
   constructor(private readonly service: ProductService) {
   }
   @Post()
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
+  // @ApiBearerAuth('access-token')
   @ApiBody({
     type:CreateProductDto
   })
@@ -44,8 +42,7 @@ export class ProductController {
 
 
   @Patch(":id")
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
+  // @ApiBearerAuth('access-token')
   @ApiResponse({
     status:203,
     description:"Updated"
@@ -58,8 +55,7 @@ export class ProductController {
   }
 
   @Delete(":id")
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
+  // @ApiBearerAuth('access-token')
   @ApiResponse({
     status:204,
     description:"Deleted"
@@ -70,16 +66,14 @@ export class ProductController {
   }
 
   @Get(":id")
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
+  // @ApiBearerAuth('access-token')
   @ApiFoundResponse()
   getOne(@Param("id") uid: string) {
     return this.service.fetch(uid);
   }
 
   @Get()
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
+  // @ApiBearerAuth('access-token')
   @ApiFoundResponse()
   fetchAll() {
     return this.service.fetch();

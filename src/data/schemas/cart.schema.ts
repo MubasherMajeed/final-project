@@ -1,14 +1,14 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
-import { User } from './user.schema';
 import { Product } from './product.schema';
 import { Document } from 'mongoose';
+import { Person } from "./person.schema";
 
 export type CartDocument = Cart & Document;
 
 @Schema({ timestamps: true })
 export class Cart {
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: User.name })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Person.name })
   userId: string;
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Product.name })
   ProductId: string;

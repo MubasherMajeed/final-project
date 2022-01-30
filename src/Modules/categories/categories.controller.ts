@@ -12,15 +12,12 @@ import {
 } from "@nestjs/common";
 import { CategoriesService } from "./categories.service";
 import {
-  ApiBearerAuth,
   ApiBody,
   ApiCreatedResponse,
   ApiFoundResponse,
-  ApiProperty,
   ApiResponse,
   ApiTags
 } from "@nestjs/swagger";
-import { JwtAuthGuard } from "../../data/utilities/auth/jwt-auth.guard";
 import { CreateCategoriesDto, CreateOrderDto } from "../../data/dtos/dto";
 
 @ApiTags('Categories')
@@ -29,8 +26,7 @@ export class CategoriesController {
   constructor(private readonly service:CategoriesService) {
   }
   @Post()
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
+  // @ApiBearerAuth('access-token')
   @ApiBody({
     type:CreateCategoriesDto
   })
@@ -44,8 +40,7 @@ export class CategoriesController {
 
 
   @Patch(":id")
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
+  // @ApiBearerAuth('access-token')
   @ApiResponse({
     status:203,
     description:"Updated"
@@ -58,8 +53,7 @@ export class CategoriesController {
   }
 
   @Delete(":id")
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
+  // @ApiBearerAuth('access-token')
   @ApiResponse({
     status:204,
     description:"Deleted"
@@ -70,16 +64,14 @@ export class CategoriesController {
   }
 
   @Get(":id")
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
+  // @ApiBearerAuth('access-token')
   @ApiFoundResponse()
   getOne(@Param("id") uid: string) {
     return this.service.fetch(uid);
   }
 
   @Get()
-  @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
+  // @ApiBearerAuth('access-token')
   @ApiFoundResponse()
   fetchAll() {
     return this.service.fetch();

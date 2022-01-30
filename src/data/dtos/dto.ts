@@ -1,10 +1,4 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Prop } from "@nestjs/mongoose";
-import mongoose from "mongoose";
-import { Supplier } from "../schemas/supplier.schema";
-import { Product } from "../schemas/product.schema";
-import { Category } from "../schemas/catgory.schema";
-import { User } from "../schemas/user.schema";
 
 
 export class LoginDto {
