@@ -22,7 +22,7 @@ export class PersonService {
   }
 
   async create(data: any) {
-    if (await this.model.findOne({ username: data.email })) {
+    if (await this.model.findOne({ username: data.username })) {
       throw new HttpException(
         "User with this email already exist",
         HttpStatus.NOT_ACCEPTABLE
@@ -32,7 +32,7 @@ export class PersonService {
   }
 
   update(id: string, data: any) {
-    return this.model.findByIdAndUpdate(id, data).exec();
+    return this.model.findByIdAndUpdate(id, data,{new:true}).exec();
   }
 
   delete(id: string) {

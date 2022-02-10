@@ -3,7 +3,15 @@ import { AuthGuard } from '@nestjs/passport';
 import { Person } from '../../data/schemas/person.schema';
 import { Body, Controller, Get, Post, Request, UseGuards } from "@nestjs/common";
 import { AccessTokenResponse, SignInRequest, SignUpRequest } from "../../data/dtos/auth.dto";
-import { ApiBody, ApiOkResponse, ApiResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import {
+  ApiBadRequestResponse,
+  ApiBearerAuth,
+  ApiBody,
+  ApiOkResponse,
+  ApiResponse,
+  ApiTags,
+  ApiUnauthorizedResponse
+} from "@nestjs/swagger";
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -25,10 +33,16 @@ export class AuthController {
     return this.service.signIn(request.user);
   }
 
-  @ApiResponse({ status: 200, description: 'SignUp successful' })
+
+  @ApiResponse({
+    status: 201,
+    description: 'SignUp successful',
+  })
+  @ApiBadRequestResponse({ description: 'Issue in request data' })
   @ApiUnauthorizedResponse({ description: 'Email already exists' })
   @Post('sign-up')
   signUp(@Body() data: SignUpRequest): Promise<any> {
+    console.log(data);
     return this.service.signUp(data);
   }
 
@@ -40,6 +54,7 @@ export class AuthController {
   @ApiUnauthorizedResponse({ description: 'Invalid access token' })
   @Get('profile')
   @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth("access-token")
   profile(@Request() request): Promise<any> {
     return this.service.profile(request.user);
   }

@@ -32,10 +32,15 @@ export class AuthService {
   }
 
   async signUp(data: SignUpRequest) {
+
+
+
     const code = await NoGeneratorUtils.generateCode(2);
     const person = (await this.personService.create(
       data,
     )) as PersonWithoutPasswordResponse;
+    console.log(person);
+    return person;
 
   }
 

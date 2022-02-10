@@ -21,6 +21,9 @@ export class Person extends User {
   @Prop()
   phone: string;
 
+  @Prop()
+  dob: string;
+
   @Prop()      
   image: Image;
 
@@ -29,6 +32,9 @@ export class Person extends User {
 
   @Prop()
   token: string;
+
+  @Prop()
+  role: number;
 }
 
 export const PersonSchema = SchemaFactory.createForClass(Person);

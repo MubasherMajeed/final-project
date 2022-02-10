@@ -17,6 +17,7 @@ export enum PaymentType {
   Online,
 }
 
+
 export type OrderDocument = Order & Document;
 
 @Schema({ timestamps: true })

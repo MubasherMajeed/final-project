@@ -28,6 +28,15 @@ export class SignUpRequest {
 
   @ApiProperty()
   phone: string;
+
+ @ApiProperty()
+  address: string;
+
+ @ApiProperty()
+  dob: string;
+
+  @ApiProperty()
+  role: number;
 }
 
 
