@@ -3,7 +3,7 @@ import * as webpConverter from "webp-converter";
 import { Image } from "../../data/schemas/image.schema";
 
 export class ImageUtils {
-  static imagePath = process.cwd() + "/shop-uploads";
+  static imagePath = process.cwd() + "shop-uploads";
 
   static async toWebp(
     imagePath: string,
